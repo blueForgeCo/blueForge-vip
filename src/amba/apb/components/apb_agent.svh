@@ -25,13 +25,13 @@ class apb_agent extends base_agent;
         end
 
         if(cfg.is_active) begin
-            sequencer = apb_driver::type_id::create("sequencer");
-            driver = apb_driver::type_id::create("driver");
+            sequencer = apb_sequencer::type_id::create("sequencer", this);
+            driver = apb_driver::type_id::create("driver", this);
             driver.vif = vif;
             driver.cfg = cfg;
         end
 
-        monitor = apb_driver::type_id::create("monitor");
+        monitor = apb_monitor::type_id::create("monitor", this);
         monitor.vif = vif;
         monitor.cfg = cfg;
     endfunction

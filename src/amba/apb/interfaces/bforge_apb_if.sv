@@ -1,8 +1,8 @@
 
 interface bforge_apb_if;
 
-    localparam ADDR_WIDTH = `ADDR_WIDTH;
-    localparam DATA_WIDTH = `DATA_WIDTH;
+    import bforge_apb_lib_pkg::*;
+
     localparam STRB_WIDTH = DATA_WIDTH/8;
 
     logic  [00:00]            pclk;

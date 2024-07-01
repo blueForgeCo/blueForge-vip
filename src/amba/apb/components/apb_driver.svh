@@ -1,7 +1,7 @@
 
 class apb_driver extends base_driver;
     
-    `uvm_components_utils(apb_driver)
+    `uvm_component_utils(apb_driver)
 
     virtual apb_if vif;
     apb_config cfg;
@@ -21,7 +21,7 @@ class apb_driver extends base_driver;
     task run_phase(uvm_phase phase);
         forever begin
             #100;
-            `uvm_info(MSG_ID, "Driver ....")
+            `uvm_info(MSG_ID, "Driver ....", UVM_NONE)
         end
     endtask
 

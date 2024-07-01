@@ -4,7 +4,7 @@ module top;
 
     bforge_apb_initiator #( "INITIATOR" ) initiator (
     );
-    bforge_apb_monitor #( "MONITOR" ) monitor0 (
+    bforge_apb_monitor #( "MONITOR" ) monitor (
     );
 
     bforge_apb_target #( "TARGET0" ) target0 (

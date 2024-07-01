@@ -1,7 +1,7 @@
 
 class apb_txn extends uvm_sequence_item;
 
-    `uvm_component_utils(apb_txn)
+    `uvm_object_utils(apb_txn)
 
     function new(string name = "apb_txn");
         super.new(name);
@@ -13,6 +13,7 @@ class apb_txn extends uvm_sequence_item;
     rand  int32_t     data;
 
     rand  apb_txn_t   is_write;
-    rand  apb_prot_t  prot;
+    // TODO: fix
+    // rand  apb_prot_t  prot;
 
 endclass

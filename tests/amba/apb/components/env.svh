@@ -1,11 +1,15 @@
 
-class env extends base_env;
-    `uvm_components_utils(env)
+class env extends uvm_env;
+    `uvm_component_utils(env)
 
     apb_agent initiator;
     apb_agent init_monitor;
     apb_agent target[TARGET_COUNT];
     apb_agent trgt_monitor[TARGET_COUNT];
+
+    function new(string name="env", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
     function void build_phase(uvm_phase phase);
         apb_config cfg;

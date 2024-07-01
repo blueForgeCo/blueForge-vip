@@ -1,9 +1,13 @@
 
+
 package bforge_apb_lib_pkg;
 
     import uvm_pkg::*;
     import bforge_base_lib_pkg::*;
     `include "uvm_macros.svh"
+
+    localparam int ADDR_WIDTH = 32;
+    localparam int DATA_WIDTH = 32;
 
     `include "types/apb_types.svh"
     `include "types/apb_config.svh"

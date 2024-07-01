@@ -1,7 +1,7 @@
 
 class apb_monitor extends base_monitor;
     
-    `uvm_components_utils(apb_monitor)
+    `uvm_component_utils(apb_monitor)
 
     virtual apb_if vif;
     apb_config cfg;
@@ -21,7 +21,7 @@ class apb_monitor extends base_monitor;
     task run_phase(uvm_phase phase);
         forever begin
             #100;
-            `uvm_info(MSG_ID, "Monitor ....")
+            `uvm_info(MSG_ID, "Monitor ....", UVM_NONE)
         end
     endtask
 

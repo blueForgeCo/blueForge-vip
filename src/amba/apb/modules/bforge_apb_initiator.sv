@@ -1,4 +1,5 @@
 
+import bforge_apb_lib_pkg::*;
 module bforge_apb_initiator #(
     parameter string AGENT_NAME
 ) (
@@ -6,16 +7,18 @@ module bforge_apb_initiator #(
     input   logic  [00:00]               PRESETn,
     output  logic  [00:00]               PSEL,
     output  logic  [00:00]               PENABLE,
-    output  logic  [`ADDR_WIDTH-1:00]    PADDR,
+    output  logic  [ADDR_WIDTH-1:00]    PADDR,
     output  logic  [00:00]               PWRITE,
-    output  logic  [`DATA_WIDTH-1:00]    PWDATA,
-    output  logic  [`DATA_WIDTH/8-1:00]  PSTRB,
-    input   logic  [`DATA_WIDTH-1:00]    PRDATA,
+    output  logic  [DATA_WIDTH-1:00]    PWDATA,
+    output  logic  [DATA_WIDTH/8-1:00]  PSTRB,
+    input   logic  [DATA_WIDTH-1:00]    PRDATA,
     input   logic  [00:00]               PREADY,
     input   logic  [00:00]               PSLVERR
 );
+    import bforge_apb_lib_pkg::*;
+    import uvm_pkg::*;
 
-    bforge_apb_if apb_if;
+    bforge_apb_if apb_if();
 
     assign  apb_if.pclk     =  PCLK;
     assign  apb_if.presetn  =  PRESETn;

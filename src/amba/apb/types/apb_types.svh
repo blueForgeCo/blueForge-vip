@@ -6,5 +6,5 @@ typedef enum bit {
 
 typedef enum {
     INITIATOR,
-    TARGET,
+    TARGET
 } apb_agent_t;
