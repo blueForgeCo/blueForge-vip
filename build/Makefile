@@ -1,6 +1,8 @@
 
 all: build sim
 
+EXTRA_SIM_ARGS ?= 
+
 build:
 	vlog ../src/base/bforge_base_lib_pkg.sv
 	vlog ../src/amba/apb/bforge_apb_lib_pkg.sv
@@ -14,7 +16,7 @@ build:
 	vlog ../tests/amba/apb/tb/top.sv
 
 sim:
-	vsim -c work.top -do "run -a; q"
+	vsim -c work.top -do "run -a; q" +UVM_TESTNAME=test ${EXTRA_SIM_ARGS}
 
 
 clean:

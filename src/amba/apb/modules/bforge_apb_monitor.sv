@@ -33,7 +33,7 @@ module bforge_apb_monitor #(
     assign  apb_if.pslverr  =  PSLVERR;
 
     initial begin
-        uvm_config_db#(virtual bforge_apb_if)::set(null, "", {"*.", AGENT_NAME}, apb_if);
+        uvm_config_db#(virtual bforge_apb_if)::set(null, {"*.", AGENT_NAME}, "vif", apb_if);
     end
 
 endmodule

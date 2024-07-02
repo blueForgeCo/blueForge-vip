@@ -7,7 +7,7 @@ class apb_agent extends base_agent;
         super.new(name, parent);
     endfunction
 
-    virtual apb_if vif;
+    virtual bforge_apb_if vif;
 
     apb_config cfg;
     apb_driver driver;
@@ -16,7 +16,7 @@ class apb_agent extends base_agent;
 
     function void build_phase(uvm_phase phase);
         if(vif == null) begin
-            if(!uvm_config_db#(virtual apb_if)::get(this, "", "vif", vif))
+            if(!uvm_config_db#(virtual bforge_apb_if)::get(this, "", "vif", vif))
                 `uvm_error(MSG_ID, "Unable to fetch vif")
         end
         if(cfg == null) begin

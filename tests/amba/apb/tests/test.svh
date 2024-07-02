@@ -10,8 +10,15 @@ class test extends uvm_test;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        e = env::type_id::create("e");
+        e = env::type_id::create("e", this);
     endfunction
+
+    task run_phase(uvm_phase phase);
+        super.run_phase(phase);
+        phase.raise_objection(this);
+        #10000;
+        phase.drop_objection(this);
+    endtask
 
 endclass
 

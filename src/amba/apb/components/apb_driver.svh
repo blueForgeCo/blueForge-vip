@@ -3,7 +3,7 @@ class apb_driver extends base_driver;
     
     `uvm_component_utils(apb_driver)
 
-    virtual apb_if vif;
+    virtual bforge_apb_if vif;
     apb_config cfg;
 
     function new(string name="apb_driver", uvm_component parent);

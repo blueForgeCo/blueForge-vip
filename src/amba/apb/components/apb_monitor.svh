@@ -3,7 +3,7 @@ class apb_monitor extends base_monitor;
     
     `uvm_component_utils(apb_monitor)
 
-    virtual apb_if vif;
+    virtual bforge_apb_if vif;
     apb_config cfg;
 
     function new(string name="apb_monitor", uvm_component parent);

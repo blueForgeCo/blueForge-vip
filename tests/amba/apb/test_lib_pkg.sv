@@ -1,7 +1,7 @@
 
 `include "params/params_pkg.sv"
 
-package base_test_lib_pkg;
+package test_lib_pkg;
 
     import uvm_pkg::*;
     `include "uvm_macros.svh"
