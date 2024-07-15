@@ -20,4 +20,4 @@ sim:
 
 
 clean:
-	rm -rf transcript work
+	git clean -xdf .
