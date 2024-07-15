@@ -15,6 +15,7 @@ class apb_agent extends base_agent;
     apb_sequencer sequencer;
 
     function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
         if(vif == null) begin
             if(!uvm_config_db#(virtual bforge_apb_if)::get(this, "", "vif", vif))
                 `uvm_error(MSG_ID, "Unable to fetch vif")
@@ -34,6 +35,13 @@ class apb_agent extends base_agent;
         monitor = apb_monitor::type_id::create("monitor", this);
         monitor.vif = vif;
         monitor.cfg = cfg;
+    endfunction
+
+    function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        if(cfg.is_active) begin
+            driver.seq_item_port.connect(sequencer.seq_item_export);
+        end
     endfunction
 
 endclass

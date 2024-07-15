@@ -12,7 +12,21 @@ class apb_txn extends uvm_sequence_item;
     rand  int4_t      strb;
     rand  int32_t     data;
 
-    rand  apb_txn_t   is_write;
+    rand  apb_txn_t   txn_type;
+
+    function bit is_write();
+        return (txn_type == WRITE);
+    endfunction
+
+    function bit is_read();
+        return (txn_type == READ);
+    endfunction
+
+    function bit set_txn_type(bit pwrite);
+        if(pwrite) txn_type = WRITE;
+        else       txn_type = READ;
+    endfunction
+
     // TODO: fix
     // rand  apb_prot_t  prot;
 

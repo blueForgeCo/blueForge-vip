@@ -1,5 +1,6 @@
 
-virtual class base_driver extends uvm_driver;
+virtual class base_driver #(type REQ, type RSP=REQ) 
+    extends uvm_driver #(REQ, RSP);
 
     string MSG_ID;
 

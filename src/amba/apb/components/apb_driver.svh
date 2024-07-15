@@ -1,5 +1,5 @@
 
-class apb_driver extends base_driver;
+class apb_driver extends base_driver #( apb_txn );
     
     `uvm_component_utils(apb_driver)
 
@@ -19,9 +19,28 @@ class apb_driver extends base_driver;
     endfunction
     
     task run_phase(uvm_phase phase);
+        drive_txn();
+    endtask
+
+    task drive_txn();
         forever begin
-            #100;
-            `uvm_info(MSG_ID, "Driver ....", UVM_NONE)
+            apb_txn txn;
+            seq_item_port.get_next_item(txn);
+            @(posedge vif.pclk);
+            vif.psel <= 1'b1;
+            vif.pwrite <= txn.is_write();
+            vif.paddr <= txn.addr;
+            if(txn.is_write()) begin
+                vif.pstrb <= txn.strb;
+                vif.pwdata <= txn.data;
+            end
+            @(posedge vif.pclk);
+            vif.penable <= 1'b1;
+            do
+                @(posedge vif.pclk);
+            while(vif.pready !== 1'b1);
+            vif.penable <= 1'b0;
+            vif.psel    <= 1'b0;
         end
     endtask
 
