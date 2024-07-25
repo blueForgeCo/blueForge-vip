@@ -8,5 +8,6 @@ package bforge_base_lib_pkg;
     `include "components/base_agent.svh"
     `include "components/base_driver.svh"
     `include "components/base_monitor.svh"
+    `include "components/txn_listener.svh"
 
 endpackage

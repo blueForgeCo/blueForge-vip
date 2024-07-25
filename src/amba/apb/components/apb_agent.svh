@@ -13,6 +13,8 @@ class apb_agent extends base_agent;
     apb_driver driver;
     apb_monitor monitor;
     apb_sequencer sequencer;
+    typedef txn_listener #(apb_txn) apb_listener;
+    apb_listener listener;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
@@ -32,6 +34,10 @@ class apb_agent extends base_agent;
             driver.cfg = cfg;
         end
 
+        if(cfg.en_txn_listener) begin
+            listener = apb_listener::type_id::create("listener", this);
+        end
+
         monitor = apb_monitor::type_id::create("monitor", this);
         monitor.vif = vif;
         monitor.cfg = cfg;
@@ -41,6 +47,9 @@ class apb_agent extends base_agent;
         super.connect_phase(phase);
         if(cfg.is_active) begin
             driver.seq_item_port.connect(sequencer.seq_item_export);
+        end
+        if(cfg.en_txn_listener) begin
+            monitor.ap.connect(listener.analysis_export);
         end
     endfunction
 
